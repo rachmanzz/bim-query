@@ -1,0 +1,20 @@
+{
+  "name": "bim-query",
+  "version": "0.1.1",
+  "description": "database query",
+  "main": "dist/bim-query.min.js",
+  "repository": "https://github.com/rachmanzz/bim-query.git",
+  "author": "Muhammad Abdurrahman",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bim": "rachmanzz/bim"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "uglify-js": "^3.6.0"
+  }
+}
