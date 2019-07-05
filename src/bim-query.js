@@ -183,14 +183,17 @@ bimquery.prototype.generate = () => {
 }
 bimquery.prototype.setUrl = url => {
     this.baseurl = url
+    return this
 }
 
 bimquery.prototype.release = () => {
     this.query = {}
+    return this
 }
 
 bimquery.prototype.auth = auth => {
     this.auth = 'Bearer ' + auth
+    return this
 }
 
 bimquery.prototype.get = (url, opt) => {
@@ -241,6 +244,4 @@ bimquery.prototype.delete = (url, opt) => {
 }
 
 
-module.exports = () => {
-    return new bimquery()
-}
+module.exports = new bimquery()
