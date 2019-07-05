@@ -16,5 +16,9 @@
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "uglify-js": "^3.6.0"
+  },
+  "scripts": {
+    "minifier" : "uglifyjs --compress --mangle -- dist/bim-query.js > dist/bim-query.min.js",
+    "build": "babel src -d dist && yarn minifier"
   }
 }
