@@ -208,14 +208,17 @@ bimquery.prototype.generate = function () {
 
 bimquery.prototype.setUrl = function (url) {
   _this.baseurl = url;
+  return _this;
 };
 
 bimquery.prototype.release = function () {
   _this.query = {};
+  return _this;
 };
 
 bimquery.prototype.auth = function (auth) {
   _this.auth = 'Bearer ' + auth;
+  return _this;
 };
 
 bimquery.prototype.get = function (url, opt) {
@@ -286,6 +289,4 @@ bimquery.prototype["delete"] = function (url, opt) {
   return axios["delete"](toUrl, baseOpt);
 };
 
-module.exports = function () {
-  return new bimquery();
-};
+module.exports = new bimquery();
