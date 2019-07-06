@@ -212,7 +212,7 @@ bimquery.prototype.release = function () {
   return this;
 };
 
-bimquery.prototype.auth = function (auth) {
+bimquery.prototype.setAuth = function (auth) {
   this.auth = 'Bearer ' + auth;
   return this;
 };
