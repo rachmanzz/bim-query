@@ -229,7 +229,7 @@ bimquery.prototype.get = function (url, opt) {
 
   if (bim.isObj(baseOpt.params)) {
     baseOpt.params = bim.merge(baseOpt.params, this.query);
-  }
+  } else baseOpt.params = this.query;
 
   return axios.get(toUrl, baseOpt);
 };
@@ -246,7 +246,7 @@ bimquery.prototype.post = function (url, data, opt) {
 
   if (bim.isObj(baseOpt.params)) {
     baseOpt.params = bim.merge(baseOpt.params, this.query);
-  }
+  } else baseOpt.params = this.query;
 
   return axios.post(toUrl, bim.isNotUndef(data) ? data : {}, baseOpt);
 };
@@ -263,7 +263,7 @@ bimquery.prototype.put = function (url, data, opt) {
 
   if (bim.isObj(baseOpt.params)) {
     baseOpt.params = bim.merge(baseOpt.params, this.query);
-  }
+  } else baseOpt.params = this.query;
 
   return axios.put(toUrl, bim.isNotUndef(data) ? data : {}, baseOpt);
 };
@@ -280,7 +280,7 @@ bimquery.prototype["delete"] = function (url, opt) {
 
   if (bim.isObj(baseOpt.params)) {
     baseOpt.params = bim.merge(baseOpt.params, this.query);
-  }
+  } else baseOpt.params = this.query;
 
   return axios["delete"](toUrl, baseOpt);
 };
