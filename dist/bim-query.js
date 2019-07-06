@@ -1,6 +1,4 @@
-"use strict";
-
-var _this = void 0;
+var _this = this;
 
 var axios = require('axios');
 
