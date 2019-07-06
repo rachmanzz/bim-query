@@ -10,6 +10,7 @@ var bimquery = function bimquery() {
   this.auth = null;
 };
 
+bimquery.prototype.init = bimquery;
 var opt = [{
   q: '<',
   al: 's'

@@ -7,6 +7,8 @@ const bimquery = function () {
     this.auth = null
  }
 
+bimquery.prototype.init = bimquery
+
 const opt = [
     { q: '<', al: 's' },
     { q: '<=', al: 'sq' },

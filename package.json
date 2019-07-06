@@ -3,13 +3,16 @@
   "version": "0.1.2",
   "description": "database query",
   "main": "dist/bim-query.min.js",
-  "repository": "https://github.com/rachmanzz/bim-query.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachmanzz/bim-query.git"
+  },
   "author": "Muhammad Abdurrahman",
   "license": "MIT",
   "private": false,
   "dependencies": {
     "axios": "^0.19.0",
-    "bim": "rachmanzz/bim"
+    "bim": "github:rachmanzz/bim"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
@@ -20,5 +23,14 @@
   "scripts": {
     "minifier": "uglifyjs --compress --mangle -- dist/bim-query.js > dist/bim-query.min.js",
     "build": "babel src -d dist && yarn minifier"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/rachmanzz/bim-query/issues"
+  },
+  "homepage": "https://github.com/rachmanzz/bim-query#readme",
+  "keywords": [
+    "query",
+    "lib",
+    "database"
+  ]
 }

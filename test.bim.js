@@ -1,8 +1,10 @@
 const bimQuery = require('./dist/bim-query.min')
 
-bimQuery.setUrl('https://reqres.in/')
+const biminit = new bimQuery.init()
 
-const result = bimQuery.where('age', 18).orderby('id', 'desc')
+biminit.setUrl('https://reqres.in/')
+
+const result = biminit.where('age', 18).orderby('id', 'desc')
 
 result.get('api/users?page=1')
 .then(res=> {
