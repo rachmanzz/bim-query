@@ -18,7 +18,7 @@ if you need to set default base url
 
 base url must end by /
 
-#### auth (optional)
+#### setAuth (optional)
 if you need to set authetication bearer
 
 `bimQuery.auth('auth')`
