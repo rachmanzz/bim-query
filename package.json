@@ -1,6 +1,6 @@
 {
   "name": "bim-query",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "database query",
   "main": "dist/bim-query.min.js",
   "repository": "https://github.com/rachmanzz/bim-query.git",
