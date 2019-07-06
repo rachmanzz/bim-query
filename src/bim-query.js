@@ -200,7 +200,7 @@ bimquery.prototype.auth = function (auth) {
 
 bimquery.prototype.get = function (url, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
-    const baseOpt = bim.isObj(opt) ? opt : {}
+    const baseOpt = bim.isObj(opt) ? opt : this.query
     if (this.auth !== null) {
         baseOpt.headers = { Authorization: this.auth }
     }
@@ -212,7 +212,7 @@ bimquery.prototype.get = function (url, opt) {
 
 bimquery.prototype.post = function (url, data, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
-    const baseOpt = bim.isObj(opt) ? opt : {}
+    const baseOpt = bim.isObj(opt) ? opt : this.query
     if (this.auth !== null) {
         baseOpt.headers = { Authorization: this.auth }
     }
@@ -224,7 +224,7 @@ bimquery.prototype.post = function (url, data, opt) {
 
 bimquery.prototype.put = function (url, data, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
-    const baseOpt = bim.isObj(opt) ? opt : {}
+    const baseOpt = bim.isObj(opt) ? opt : this.query
     if (this.auth !== null) {
         baseOpt.headers = { Authorization: this.auth }
     }
