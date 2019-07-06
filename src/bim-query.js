@@ -1,7 +1,7 @@
 const axios = require('axios')
 const bim = require('bim')
 
-const bimquery = () => { 
+const bimquery = function () { 
     this.query = {}
     this.baseurl = null
     this.auth = null
@@ -15,12 +15,12 @@ const opt = [
     { q: '!=', al: 'not' },
 ]
 
-const filterOpt = op => {
+const filterOpt = function (op) {
     const raw = opt.filter(key => key.q === op )
     return bim.size(raw) === 0 ? null : raw[0].al
 }
 
-bimquery.prototype.where = (key, arg, val) => {
+bimquery.prototype.where = function (key, arg, val) {
     if (bim.isArray(key)) {
         const count = key.length
         for (let i = 0; i < count; i++) {
@@ -56,7 +56,7 @@ bimquery.prototype.where = (key, arg, val) => {
     return this
 }
 
-bimquery.prototype.orwhere = (key, arg, val) => {
+bimquery.prototype.orwhere = function (key, arg, val) {
     if (bim.isArray(key)) {
         const count = key.length
         for (let i = 0; i < count; i++) {
@@ -92,7 +92,7 @@ bimquery.prototype.orwhere = (key, arg, val) => {
     return this
 }
 
-bimquery.prototype.between = (key, val, val1) => {
+bimquery.prototype.between = function (key, val, val1) {
     if (bim.isArray(key)) {
         const count = key.length
         for (let i = 0; i < count; i++) {
@@ -119,21 +119,21 @@ bimquery.prototype.between = (key, val, val1) => {
     return this
 }
 
-bimquery.prototype.groupby = val => {
+bimquery.prototype.groupby = function (val) {
     this.query.groupby = val
     return this
 }
 
-bimquery.prototype.offset = val => {
+bimquery.prototype.offset = function (val) {
     this.query.offset = val
     return this
 }
-bimquery.prototype.limit = val => {
+bimquery.prototype.limit = function (val) {
     this.query.limit = val
     return this
 }
 
-bimquery.prototype.orderby = (key, val) => {
+bimquery.prototype.orderby = function (key, val) {
     if (bim.isNotUndef(this.query.orderby)) {
         if (bim.isArray(this.query.orderby)) {
             this.query.orderby.push(key + '|' + val)
@@ -149,7 +149,7 @@ bimquery.prototype.orderby = (key, val) => {
     return this
 }
 
-bimquery.prototype.with = key => {
+bimquery.prototype.with = function (key) {
     if (bim.isNotUndef(key)) {
         if (bim.isArray(this.query.with)) this.query.with.push(key)
         else {
@@ -162,41 +162,41 @@ bimquery.prototype.with = key => {
     return this
 }
 
-bimquery.prototype.paginate = (key, val) => {
+bimquery.prototype.paginate = function (key, val) {
     if (bim.isNotUndef(val)) this.query.paginate = key + '|' + val
     else this.query.paginate = key
     return this
 }
 
-bimquery.prototype.page = (key, val) => {
+bimquery.prototype.page = function (key, val) {
     if (bim.isNotUndef(val)) this.query.paginate = key + '|' + val
     else this.query.paginate = key
     return this
 }
 
-bimquery.prototype.first = () => {
+bimquery.prototype.first = function () {
     this.query.first = true
     return this
 }
-bimquery.prototype.generate = () => {
+bimquery.prototype.generate = function () {
     return this.query
 }
-bimquery.prototype.setUrl = url => {
+bimquery.prototype.setUrl = function (url) {
     this.baseurl = url
     return this
 }
 
-bimquery.prototype.release = () => {
+bimquery.prototype.release = function () {
     this.query = {}
     return this
 }
 
-bimquery.prototype.auth = auth => {
+bimquery.prototype.auth = function (auth) {
     this.auth = 'Bearer ' + auth
     return this
 }
 
-bimquery.prototype.get = (url, opt) => {
+bimquery.prototype.get = function (url, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
     const baseOpt = bim.isObj(opt) ? opt : {}
     if (this.auth !== null) {
@@ -208,7 +208,7 @@ bimquery.prototype.get = (url, opt) => {
     return axios.get(toUrl, baseOpt)
 }
 
-bimquery.prototype.post = (url, data, opt) => {
+bimquery.prototype.post = function (url, data, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
     const baseOpt = bim.isObj(opt) ? opt : {}
     if (this.auth !== null) {
@@ -220,7 +220,7 @@ bimquery.prototype.post = (url, data, opt) => {
     return axios.post(toUrl, bim.isNotUndef(data) ? data : {}, baseOpt)
 }
 
-bimquery.prototype.put = (url, data, opt) => {
+bimquery.prototype.put = function (url, data, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
     const baseOpt = bim.isObj(opt) ? opt : {}
     if (this.auth !== null) {
@@ -231,7 +231,7 @@ bimquery.prototype.put = (url, data, opt) => {
     }
     return axios.put(toUrl, bim.isNotUndef(data) ? data : {}, baseOpt)
 }
-bimquery.prototype.delete = (url, opt) => {
+bimquery.prototype.delete = function (url, opt) {
     const toUrl = this.baseurl !== null ? this.baseurl + url : url
     const baseOpt = bim.isObj(opt) ? opt : {}
     if (this.auth !== null) {
