@@ -67,7 +67,7 @@ bimquery.prototype.orwhere = function (key, arg, val) {
                 let childSize = bim.size(child)
                 if(childSize >= 2 && child <=3) {
                     if(bim.iString(child[0])) {
-                        childSize === 3 ? this.where(child[0], child[1], child[2]) : this.where(child[0], child[1])
+                        childSize === 3 ? this.orwhere(child[0], child[1], child[2]) : this.orwhere(child[0], child[1])
                     }
                 }
             }
@@ -153,14 +153,26 @@ bimquery.prototype.orderby = function (key, val) {
 
 bimquery.prototype.with = function (key) {
     if (bim.isNotUndef(key)) {
-        if (bim.isArray(this.query.with)) this.query.with.push(key)
-        else {
-            const arr = []
-            arr.push(this.query.with)
-            this.query.with = arr
-            this.query.with.push(key)
+        if (bim.isNotUndef(this.query.with)) {
+            if (bim.isArray(this.query.with)) this.query.with.push(key)
+            else {
+                const arr = []
+                arr.push(this.query.with)
+                this.query.with = arr
+                this.query.with.push(key)
+            }
+        } else this.query.with = key
+    }
+    return this
+}
+
+bimquery.prototype.wherelike = function (key, value, position) {
+    // start_with, end_with, any_position, have_at_{number}, start_with_min_{number}, start_and_end
+    if (bim.isNotUndef(key) && bim.isNotUndef(value) && bim.isNotUndef(position)) {
+        if (/^start_with$|^end_with$|^any_position$|^have_at_[0-9]+$|^start_with_min_[0-9]+$|^start_with_end$/.test(position) && typeof value !== 'object') {
+
         }
-    } else this.query.with = key
+    }
     return this
 }
 
