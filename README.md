@@ -112,9 +112,13 @@ generate to query object, you can use to third party library
 make sure you release if you using this library more than one action in same page
 for example `bimQuery.release().where().with().orderby()`
 
+### init()
+if you want to make new Instance like this : `var bimA = new bimQuery.init()`
+
 ### get(url, option)
 return for axios library action (promise or async)
 `bimQuery.release().where().with().orderby().page(1).get('user')`
+
 
 ### post(url, data, option)
 
