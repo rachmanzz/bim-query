@@ -1,14 +1,6 @@
-const bimQuery = require('./dist/bim-query.min')
+const bimQuery = require('./src/bim-query')
 
 const biminit = new bimQuery.init()
 
-biminit.setUrl('https://reqres.in/')
-
-const result = biminit.where('age', 18).orderby('id', 'desc')
-
-result.get('api/users?page=1')
-.then(res=> {
-    console.log(res)
-}).catch(err=> {
-    console.log(err)
-})
+const result = biminit.release().wherelike('key', 'aman','any_position').wherelike('key', 'aman','end_with').between('key', 0, 9).groupby('key').orderby('key2', 'asc').orderby('key2', 'desc').first()
+console.log(result.generate())

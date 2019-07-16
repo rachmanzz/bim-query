@@ -22,6 +22,14 @@ const filterOpt = function (op) {
     return bim.size(raw) === 0 ? null : raw[0].al
 }
 
+const addUnderscore = function (num) {
+    if (bim.isNumber(num)) {
+      var result = ''
+      for (let i = 0; i < num; i++) result += '_'
+      return result
+    } return ''
+  }
+
 bimquery.prototype.where = function (key, arg, val) {
     if (bim.isArray(key)) {
         const count = key.length
@@ -168,9 +176,44 @@ bimquery.prototype.with = function (key) {
 
 bimquery.prototype.wherelike = function (key, value, position) {
     // start_with, end_with, any_position, have_at_{number}, start_with_min_{number}, start_and_end
-    if (bim.isNotUndef(key) && bim.isNotUndef(value) && bim.isNotUndef(position)) {
-        if (/^start_with$|^end_with$|^any_position$|^have_at_[0-9]+$|^start_with_min_[0-9]+$|^start_with_end$/.test(position) && typeof value !== 'object') {
+    if (bim.iString(key) && bim.isNotUndef(value) && bim.iString(position)) {
+        if (/^start_with$|^end_with$|^any_position$|^have_at_[0-9]+$|^start_min_[0-9]+$|^start_with_end$/.test(position)) {
+          var val, pos
+          if(bim.isArray(value) && position === 'start_with_end') {
+            let size = value.length
+            if (size == 2) {
+                val = value[0] + ',' + value[1]
+                pos = 'start_with_end'
+            }
+          }
+          if (bim.iString(value)) {
+            if (/^have_at_[0-9]+$/.test(position)) {
+                let gm = position.match(/^have_at_([0-9]+)$/)
+                let num = gm[1]
+                let under = addUnderscore(parseInt(num))
+                val = under + value
+                pos = 'start_with'
+            } else if (/^start_min_[0-9]+$/.test(position)) {
+                let gm = position.match(/^start_min_([0-9]+)$/)
+                let num = gm[1]
+                let under = addUnderscore(parseInt(num))
+                val = value + under
+                pos = 'start_with'
+            } else {
+                val = value
+                pos = position
+            }
+          }
 
+          if (bim.isNotUndef(this.query.wherelike)) {
+            if (bim.isArray(this.query.wherelike)) this.query.wherelike.push(key + '|' + val + '|' + pos)
+            else {
+              const arr = []
+              arr.push(this.query.wherelike)
+              this.query.wherelike = arr
+              this.query.wherelike.push(key + '|' + val + '|' + pos)
+            }
+          } else this.query.wherelike = key + '|' + val + '|' + pos
         }
     }
     return this
