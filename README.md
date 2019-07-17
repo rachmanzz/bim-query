@@ -10,9 +10,11 @@ Bim Query is for front-end web that work with :
 
 
 ### Install 
-   `yarn add rachmanzz/bim-query // or`
+   `yarn add bim-query`
+
+   -- or --
    
-   `npm i --save rachmanzz/bim-query`
+   `npm i --save bim-query`
 
 ### How To
 
