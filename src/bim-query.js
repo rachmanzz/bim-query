@@ -1,5 +1,5 @@
 const axios = require('axios')
-const bim = require('bim')
+const bim = require('bimn')
 
 const bimquery = function () { 
     this.query = {}

@@ -2,7 +2,7 @@
 
 var axios = require('axios');
 
-var bim = require('bim');
+var bim = require('bimn');
 
 var bimquery = function bimquery() {
   this.query = {};
